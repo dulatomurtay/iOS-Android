@@ -64,7 +64,9 @@ class ShoppingCart {
     print('--- Receipt ---');
     for (var item in _items) {
       print(item.getDetails());
-      item.download(item.title);
+      if (item is Downloadable) {
+        (item as Downloadable).download(item.title);
+      }
     }
     double total = calculateTotalWithTax();
     print('Total with tax: $total₸');
